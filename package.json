@@ -6,7 +6,7 @@
     "node": "20 || 22"
   },
   "scripts": {
-    "start": "NODE_OPTIONS=--no-node-snapshot backstage-cli repo start",
+    "start": "dotenv backstage-cli repo start",
     "build:backend": "yarn workspace backend build",
     "build:all": "backstage-cli repo build --all",
     "build-image": "yarn workspace backend build-image",
@@ -50,5 +50,10 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.4.1",
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "dotenv-cli": "^9.0.0",
+    "pg": "^8.16.3"
+  }
 }
