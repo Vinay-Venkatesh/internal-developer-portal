@@ -31,7 +31,7 @@ backend:
 integrations:
   github:
     - host: github.com
-      token: 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
+      token: ${GITHUB_TOKEN}
 
 techdocs:
   builder: 'local' # Alternatives - 'external'
