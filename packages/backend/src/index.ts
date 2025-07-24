@@ -8,9 +8,6 @@
 
 import { createBackend } from '@backstage/backend-defaults';
 
-// for github plugin
-import githubDiscovery from '@backstage/plugin-catalog-backend-module-github';
-
 const backend = createBackend();
 
 backend.add(import('@backstage/plugin-app-backend'));
