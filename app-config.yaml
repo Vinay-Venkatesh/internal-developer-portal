@@ -1,9 +1,9 @@
 app:
-  title: Scaffolded Backstage App
+  title: Platform Backsage App
   baseUrl: http://localhost:3000
 
 organization:
-  name: PlatformOps
+  name: Platform
 
 backend:
   baseUrl: http://localhost:7007
@@ -21,9 +21,12 @@ backend:
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
   database:
-    client: better-sqlite3
-    connection: ':memory:'
-  # workingDirectory: /tmp # Use this to configure a working directory for the scaffolder, defaults to the OS temp-dir
+    client: pg
+    connection:
+      host: ${DB_HOST}       
+      port: 5432            
+      user: ${DB_USER}        
+      password: ${DB_PASS}
   reading:
     allow:
       - host: 'raw.githubusercontent.com'
@@ -39,6 +42,23 @@ techdocs:
     runIn: 'docker' # Alternatives - 'local'
   publisher:
     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
+
+# login section for - guest/SSO.
+auth:
+  #environment: development
+  # see https://backstage.io/docs/auth/ to learn about auth providers
+  providers:
+    # See https://backstage.io/docs/auth/guest/provider
+    github:
+      development:
+        clientId: ${GITHUB_CLIENT_ID}
+        clientSecret: ${GITHUB_CLIENT_SECRET}
+        #lifespan of user session
+        sessionDuration: { hours: 24 } # supports `ms` library format (e.g. '24h', '2 days'), ISO duration, "human duration" as used in code
+        signIn:
+          resolvers:
+            # See https://backstage.io/docs/auth/github/provider#resolvers for more resolvers
+            - resolver: usernameMatchingUserEntityName
 
 catalog:
   providers:
