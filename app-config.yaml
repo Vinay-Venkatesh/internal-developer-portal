@@ -1,9 +1,9 @@
 app:
-  title: Platform Backsage App
+  title: PlatformIQ Backsage Application
   baseUrl: http://localhost:3000
 
 organization:
-  name: Platform
+  name: PlatformIQ
 
 backend:
   baseUrl: http://localhost:7007
@@ -49,6 +49,7 @@ auth:
   # see https://backstage.io/docs/auth/ to learn about auth providers
   providers:
     # See https://backstage.io/docs/auth/guest/provider
+    #guest: {}
     github:
       development:
         clientId: ${GITHUB_CLIENT_ID}
@@ -80,27 +81,37 @@ catalog:
           repository: 'devx-backstage'
         schedule:
           frequency: PT15M   # Poll every 15 minute
-          timeout:   PT5M   # Timeout if it takes more than 5 minutes
+          timeout:   PT5M   # Timeout if it takes more than 5 minutes        
 
   import:
     entityFilename: catalog-info.yaml
     pullRequestBranchName: backstage-integration
   rules:
-    - allow: [Component, System, API, Resource, Location, Template]
+    - allow: [Component, System, API, Resource, Location, Template, User, Group]
   locations:
     # Local example data, file locations are relative to the backend process, typically `packages/backend`
-    - type: file
-      target: ../../examples/entities.yaml
+    # - type: file
+    #   target: ../../examples/entities.yaml
       
-    # Local example template
-    - type: file
-      target: ../../examples/template/template.yaml
-      rules:
-        - allow: [Template]
+    # # Local example template
+    # - type: file
+    #   target: ../../examples/template/template.yaml
+    #   rules:
+    #     - allow: [Template]
 
     # Local example organizational data
     - type: file
       target: ../../examples/org.yaml
+      rules:
+        - allow: [User, Group]
+    
+    # - type: github
+    #   target: https://github.com/Vinay-Venkatesh/idp-templates/tree/main/entities
+    #   rules:
+    #     - allow: [User, Group]
+
+    - type: url
+      target: https://raw.githubusercontent.com/Vinay-Venkatesh/idp-templates/main/entities/org.yaml
       rules:
         - allow: [User, Group]
 

@@ -16,14 +16,4 @@ spec:
   type: team
   children: []
 ---
-apiVersion: backstage.io/v1alpha1
-kind: User
-metadata:
-  name: Vinay-Venkatesh
-spec:
-  profile:
-    displayName: VinayV
-    email: vinay.venkatesh20@gmail.com
-  memberOf: []
----
 
