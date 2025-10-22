@@ -17,6 +17,12 @@ backend:
     origin: http://localhost:3000
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
+  auth:
+    externalAccess:
+      - type: static
+        options:
+          token: ${BACKEND_SECRET}
+          subject: api-client
 
   # This is for local development only, it is not recommended to use this in production
   # The production database configuration is stored in app-config.production.yaml
@@ -71,7 +77,7 @@ catalog:
           branch: 'main'
           repository: '.*'
         schedule:
-          frequency: PT15M   # Poll every 15 minute
+          frequency: PT5M   # Poll every 5 minute
           timeout:   PT5M   # Timeout if it takes more than 5 minutes
       templates:
         organization: 'Vinay-Venkatesh'
@@ -98,6 +104,11 @@ catalog:
     #   target: ../../examples/template/template.yaml
     #   rules:
     #     - allow: [Template]
+
+    - type: file
+      target: ../../examples/template/template.yaml
+      rules:
+        - allow: [Template]
 
     # Local example organizational data
     - type: file

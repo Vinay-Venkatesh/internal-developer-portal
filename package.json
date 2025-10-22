@@ -38,7 +38,9 @@
   },
   "resolutions": {
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "@octokit/rest": "20.0.2",
+    "@octokit/graphql": "7.0.2"
   },
   "prettier": "@backstage/cli/config/prettier",
   "lint-staged": {
@@ -52,6 +54,7 @@
   },
   "packageManager": "yarn@4.4.1",
   "dependencies": {
+    "date-fns": "^2.30.0",
     "dotenv": "^17.2.0",
     "dotenv-cli": "^9.0.0",
     "pg": "^8.16.3"
